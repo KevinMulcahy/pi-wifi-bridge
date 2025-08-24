@@ -187,3 +187,14 @@ echo "1. Verify WiFi connectivity: iwconfig wlan0"
 echo "2. Check keepalived status: sudo systemctl status keepalived"
 echo "3. Monitor logs: tail -f /var/log/wifi_bridge.log"
 echo "4. Test failover by disconnecting primary bridge"
+Collapse
+
+
+
+
+
+
+
+
+
+
