@@ -41,7 +41,7 @@ echo "Configuring as $STATE with IP $ETH_IP and priority $PRIORITY..."
 # Create log directory
 sudo mkdir -p /var/log
 sudo touch /var/log/wifi_bridge.log /var/log/system_stats.log
-sudo chown pi:pi /var/log/wifi_bridge.log /var/log/system_stats.log
+sudo chown $(whoami):$(whoami) /var/log/wifi_bridge.log /var/log/system_stats.log
 
 # Configure network interfaces
 sudo tee /etc/dhcpcd.conf > /dev/null <<EOF
@@ -160,9 +160,9 @@ sudo systemctl enable keepalived
 sudo systemctl start keepalived
 
 # Add monitoring cron jobs
-(crontab -l 2>/dev/null; echo "*/5 * * * * /home/pi/pi-wifi-bridge/scripts/system_monitor.sh") | crontab -
-(crontab -l 2>/dev/null; echo "0 6 * * * /home/pi/pi-wifi-bridge/scripts/daily_health_check.sh") | crontab -
-(crontab -l 2>/dev/null; echo "*/15 * * * * /home/pi/pi-wifi-bridge/scripts/wifi_auto_select.sh") | crontab -
+(crontab -l 2>/dev/null; echo "*/5 * * * * $HOME/pi-wifi-bridge/scripts/system_monitor.sh") | crontab -
+(crontab -l 2>/dev/null; echo "0 6 * * * $HOME/pi-wifi-bridge/scripts/daily_health_check.sh") | crontab -
+(crontab -l 2>/dev/null; echo "*/15 * * * * $HOME/pi-wifi-bridge/scripts/wifi_auto_select.sh") | crontab -
 
 echo "=== WiFi Bridge Setup Complete ==="
 echo "Bridge IP: $ETH_IP"
